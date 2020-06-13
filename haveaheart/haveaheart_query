@@ -1,0 +1,3 @@
+curl --silent "https://dutchie.com/graphql?operationName=FilteredProducts&variables=%7B%22productsFilter%22%3A%7B%22dispensaryId%22%3A%22W32boKDC36MdnDtqA%22%2C%22bypassOnlineThresholds%22%3Afalse%7D%2C%22useCache%22%3Afalse%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%22766463bc3205c1fe19404bf679d39db15634a3128820f9e59b4e50a22dff788e%22%7D%7D" | jq -c ".data.filteredProducts.products[] | select(.type == \"Flower\") | { \"brandName\": .brandName, \"name\": .Name }"  | sort > $(date '+%m-%d')
+
+grep -vf $(date --date yesterday '+%m-%d') $(date '+%m-%d')
